@@ -1,0 +1,50 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; manifest-src 'self'; object-src 'none'; upgrade-insecure-requests
+# No Cache-Control on /* — Pages concatenates header values rather than
+# overriding them, so any value here gets merged into the per-path rules
+# below (immutable CSS, long-cache fonts/images) and the strictest directive
+# wins, defeating the cache strategy. Pages already sends a sensible HTML
+# default of `public, max-age=0, must-revalidate` when nothing is set.
+
+# Immutable: stable filenames or explicit cache-busting (CSS uses ?v=…)
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Ready for self-hosted WOFF2 — see CLAUDE.md "Fonts". No-op until fonts/ exists.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Moderate: images change with brand refreshes; no filename fingerprinting
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Short: JS is not cache-busted; safer to revalidate daily
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/icon-192.png
+  Cache-Control: public, max-age=604800
+
+/icon-512.png
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
+/site.webmanifest
+  Cache-Control: public, max-age=604800
+  Content-Type: application/manifest+json

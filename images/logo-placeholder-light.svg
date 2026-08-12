@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" role="img" aria-label="Happy Construction">
+	<path d="M18 50 L30 30 L42 50 Z" fill="#F2A007"/>
+	<rect x="18" y="52" width="24" height="5" rx="2.5" fill="#F2A007"/>
+	<text x="70" y="40" font-family="Helvetica Neue, Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="0.5" fill="#FFFFFF">HAPPY</text>
+	<text x="70" y="63" font-family="Helvetica Neue, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="3.4" fill="#B8C0C8">CONSTRUCTION</text>
+</svg>

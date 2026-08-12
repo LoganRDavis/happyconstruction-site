@@ -1,0 +1,22 @@
+{
+	"short_name": "Happy",
+	"name": "Happy Construction",
+	"description": "Commercial general contractor. Placeholder description — replace once positioning is set.",
+	"scope": "/",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#1F2933",
+	"icons": [
+		{
+			"src": "icon-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

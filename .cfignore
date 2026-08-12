@@ -1,0 +1,17 @@
+.git
+.gitignore
+.cfignore
+.vscode
+.claude
+.devcontainer
+.mcp.json
+.playwright-mcp
+.playwright-mcp.config.json
+README.md
+CLAUDE.md
+Makefile
+serve.py
+
+# Image source archives — kept in the repo as masters but not needed in prod.
+# See images/README.md "Source / archive" section.
+images/README.md

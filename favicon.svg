@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Happy Construction">
+	<rect width="64" height="64" rx="12" fill="#1F2933"/>
+	<path d="M17 42 L32 17 L47 42 Z" fill="#F2A007"/>
+	<rect x="17" y="45" width="30" height="6" rx="3" fill="#F2A007"/>
+</svg>
