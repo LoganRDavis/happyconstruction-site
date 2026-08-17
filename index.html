@@ -5,23 +5,29 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Happy Construction | Commercial General Contractor</title>
-	<meta name="description" content="Happy Construction is a commercial general contractor. Placeholder description — replace with real positioning copy before launch.">
-	<meta name="theme-color" content="#1F2933">
+	<meta name="description" content="Happy Construction is a commercial general contractor. Placeholder description. Replace with real positioning copy before launch.">
+	<meta name="theme-color" content="#FDCB17">
 	<link rel="canonical" href="https://www.happyconstructionar.com/">
 
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Happy Construction">
 	<meta property="og:title" content="Happy Construction | Commercial General Contractor">
-	<meta property="og:description" content="Happy Construction is a commercial general contractor. Placeholder description — replace with real positioning copy before launch.">
+	<meta property="og:description" content="Happy Construction is a commercial general contractor. Placeholder description. Replace with real positioning copy before launch.">
 	<meta property="og:url" content="https://www.happyconstructionar.com/">
 	<meta name="twitter:card" content="summary_large_image">
-	<!-- TODO: add og:image / twitter:image (1200x630 PNG) once a share card exists.
-	     Must be .png, not .webp — see CLAUDE.md. Needs og:image:alt + twitter:image:alt. -->
+	<meta property="og:image" content="https://www.happyconstructionar.com/images/og-card.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="The Happy Construction logo: a smiling face in a hard hat marked H, beside the words Happy Construction and the tagline Building with a smile.">
+	<meta name="twitter:image" content="https://www.happyconstructionar.com/images/og-card.png">
+	<meta name="twitter:image:alt" content="The Happy Construction logo: a smiling face in a hard hat marked H, beside the words Happy Construction and the tagline Building with a smile.">
 
+	<link rel="icon" href="/favicon.ico" sizes="32x32">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="stylesheet" href="/css/main.css?v=20260811a">
+	<link rel="stylesheet" href="/css/main.css?v=20260817b">
 	<script src="/js/components.js" defer></script>
 
 	<script type="application/ld+json">
@@ -33,7 +39,7 @@
 		"url": "https://www.happyconstructionar.com",
 		"telephone": "+15555555555",
 		"email": "info@happyconstructionar.com",
-		"description": "Commercial general contractor. Placeholder description — replace before launch."
+		"description": "Commercial general contractor. Placeholder description. Replace before launch."
 	}
 	</script>
 </head>
@@ -43,13 +49,13 @@
 		<site-header></site-header>
 
 		<main id="main-content">
-			<p class="wip-banner">Scaffold preview — all copy, imagery, and contact details on this site are placeholders.</p>
+			<p class="wip-banner">Preview build. Every headline, paragraph, image, and contact detail on this site is a placeholder.</p>
 
 			<section class="hero">
 				<div class="hero-inner">
 					<span class="eyebrow">Commercial General Contractor</span>
 					<h1>Headline goes here once positioning is set</h1>
-					<p>Two-sentence value proposition. Replace this with the client's actual pitch — what they build, who they build it for, and why an owner or developer should call them instead of the other GC in town.</p>
+					<p>Two-sentence value proposition goes here. What Happy Construction builds, who it builds for, and why an owner or developer should call this team first. Final copy pending.</p>
 					<div class="hero-actions">
 						<a href="/contact" class="btn">Start a Project</a>
 						<a href="/projects" class="btn btn-ghost">See Our Work</a>
@@ -57,10 +63,40 @@
 				</div>
 			</section>
 
+			<!-- Proof strip. Credentials sit directly below the hero because
+			     that is the first thing an owner's rep scans for. The market
+			     survey behind this section is in CLAUDE.md.
+			     PLACEHOLDER FIGURES: every number here is fake. Drop any item
+			     that cannot be substantiated rather than softening it. -->
+			<section class="proof-strip" aria-labelledby="proof-heading">
+				<h2 id="proof-heading" class="visually-hidden">Our credentials</h2>
+				<!-- role="list" is redundant per spec but required in practice:
+				     `list-style: none` makes Safari/VoiceOver drop list semantics,
+				     so the four credentials stop being announced as a set of four. -->
+				<ul class="proof-inner" role="list">
+					<li class="proof-item">
+						<span class="proof-figure">XX</span>
+						<span class="proof-label">Years Building in NWA</span>
+					</li>
+					<li class="proof-item">
+						<span class="proof-figure">XXX+</span>
+						<span class="proof-label">Projects Delivered</span>
+					</li>
+					<li class="proof-item">
+						<span class="proof-figure">X.XX</span>
+						<span class="proof-label">EMR Safety Rating</span>
+					</li>
+					<li class="proof-item">
+						<span class="proof-figure proof-figure-text">Licensed<br>&amp; Bonded</span>
+						<span class="proof-label">AR License #XXXXXX</span>
+					</li>
+				</ul>
+			</section>
+
 			<section class="section">
 				<div class="section-inner">
 					<h2 class="section-title">What We Build</h2>
-					<p class="section-lede">Placeholder overview of the service mix. The three cards below mirror the structure of the Services page — keep them in sync when real service categories are confirmed.</p>
+					<p class="section-lede">Placeholder overview of the service mix. These three cards mirror the Services page and stay in sync with it once real categories are confirmed.</p>
 					<div class="card-grid">
 						<div class="card card-accent">
 							<h3>Service One</h3>
@@ -81,27 +117,35 @@
 			<section class="section section-concrete">
 				<div class="section-inner">
 					<h2 class="section-title">Recent Projects</h2>
-					<p class="section-lede">Placeholder project grid. Swap the striped frames for real photography — see images/README.md.</p>
+					<p class="section-lede">Placeholder project grid. The striped frames stand in until real project photography lands.</p>
+					<!-- Tiles carry sector + name + city + year. Named work is what
+					     an owner's rep scans for; an unnamed tile proves nothing.
+					     PLACEHOLDER: names, sectors, cities, and years all pending.
+					     Ask whether any project is under NDA or needs owner sign-off
+					     before it goes public. -->
 					<div class="card-grid">
 						<article class="tile">
 							<div class="tile-media">Project photo</div>
 							<div class="tile-body">
+								<span class="tile-sector">Sector</span>
 								<h3>Project Name</h3>
-								<p>Type · Location · Year</p>
+								<p class="tile-meta">City, AR · Year</p>
 							</div>
 						</article>
 						<article class="tile">
 							<div class="tile-media">Project photo</div>
 							<div class="tile-body">
+								<span class="tile-sector">Sector</span>
 								<h3>Project Name</h3>
-								<p>Type · Location · Year</p>
+								<p class="tile-meta">City, AR · Year</p>
 							</div>
 						</article>
 						<article class="tile">
 							<div class="tile-media">Project photo</div>
 							<div class="tile-body">
+								<span class="tile-sector">Sector</span>
 								<h3>Project Name</h3>
-								<p>Type · Location · Year</p>
+								<p class="tile-meta">City, AR · Year</p>
 							</div>
 						</article>
 					</div>
@@ -110,7 +154,7 @@
 
 			<section class="cta-strip">
 				<h2>Ready to talk about your project?</h2>
-				<p>Placeholder closing line. Replace with the client's preferred call to action.</p>
+				<p>Placeholder closing line. Final call-to-action copy pending.</p>
 				<a href="/contact" class="btn btn-dark">Contact Us</a>
 			</section>
 		</main>

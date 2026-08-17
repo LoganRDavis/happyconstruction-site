@@ -1,40 +1,48 @@
 /* =============================================================
-   Happy Construction — main stylesheet
+   Happy Construction: main stylesheet
 
-   PLACEHOLDER PALETTE. Every color below is a neutral commercial-GC
-   stand-in chosen so the scaffold reads as professional, not as a brand.
-   When the client logo and reference sites land, re-derive these tokens
-   from the logo and the rest of the sheet follows — nothing below :root
-   hardcodes a hex. See CLAUDE.md > "Design tokens".
+   PALETTE IS REAL, derived from the brand gold (#FDCB17). The neutrals
+   are warm-shifted to sit with it. The old cool blue-greys fought the
+   gold. Nothing below :root hardcodes a hex, so the site re-skins from
+   this block alone. Keep it that way. See CLAUDE.md > "Design tokens".
 
-   Fonts are the system stack for the same reason. CLAUDE.md > "Fonts"
-   has the self-hosting procedure for when a typeface is chosen.
+   Every pair below is verified WCAG AA (>=4.5:1 for text). Two rules:
+
+   * `--accent` (#FDCB17) is NEVER a text color on a light surface.
+     It is 1.53:1 on white. It is a fill: buttons, rules, the CTA band,
+     and type on `--ink`. For gold *text* on light, use `--accent-dark`.
+   * `--accent-dark` must stay dark enough to carry white text, because
+     `.btn:hover` and `.header-phone:hover` reverse out of it.
+
+   Fonts are still the system stack. CLAUDE.md > "Fonts" has the
+   self-hosting procedure for when a typeface is chosen.
    ============================================================= */
 
 :root {
   /* Brand */
-  --ink: #1F2933;          /* primary dark — headings, header text, footer bg */
-  --ink-soft: #3E4C59;
-  --slate: #5A6672;        /* body copy on light */
-  --slate-light: #9AA5B1;
-  --accent: #F2A007;       /* safety amber — CTAs, rules, active nav */
-  --accent-dark: #C97F00;
-  --accent-light: #FFF0D1;
+  --ink: #17130F;          /* warm near-black: headings, hero/footer bg */
+  --ink-soft: #332B22;
+  --slate: #574F45;        /* body copy on light, 8.05:1 on white */
+  --slate-light: #6E6459;  /* muted labels, 5.78:1 on white */
+  --accent: #FDCB17;       /* brand gold: FILL ONLY, never text on light */
+  --accent-dark: #7A5E00;  /* gold that survives as text, 6.12:1 on white */
+  --accent-light: #FFF1C2; /* gold wash: proof strip, highlight panels */
 
   /* Surfaces */
   --white: #ffffff;
-  --concrete: #F5F6F7;     /* alternating section background */
-  --concrete-dark: #E4E7EB;
-  --line: #DDE1E6;         /* hairline borders */
+  --concrete: #FAF7F1;     /* warm off-white, alternating sections */
+  --concrete-dark: #EFE8DA;
+  --line: #E4DBC9;         /* hairline borders */
 
   /* Typography */
   --font-body: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
   --font-display: var(--font-body);
 
   /* Elevation */
-  --sh-sm: 0 1px 3px rgba(31, 41, 51, 0.10);
-  --sh-md: 0 6px 20px rgba(31, 41, 51, 0.10);
-  --sh-lg: 0 18px 40px rgba(31, 41, 51, 0.14);
+  /* Warm-tinted to match --ink; a blue-grey shadow reads dirty against gold. */
+  --sh-sm: 0 1px 3px rgba(23, 19, 15, 0.10);
+  --sh-md: 0 6px 20px rgba(23, 19, 15, 0.10);
+  --sh-lg: 0 18px 40px rgba(23, 19, 15, 0.14);
 
   /* Geometry */
   --radius: 4px;
@@ -216,10 +224,14 @@ header {
   padding: 12px 20px;
 }
 
-/* The logo link must not shrink, and the image needs a *definite* height —
-   an SVG sized `width: auto; max-height: N` inside a flex row collapses to
+/* The logo link must not shrink, and the image needs a *definite* height.
+   An SVG sized `width: auto; max-height: N` inside a flex row collapses to
    0x0 because it has no definite flex basis to resolve against. */
 .header-logo-link { flex-shrink: 0; display: block; }
+
+/* <picture> is inline by default; a block wrapper keeps the link's height equal
+   to the image's and avoids an inline baseline gap. */
+.header-logo-link picture { display: block; }
 
 .header-logo {
   height: 48px;
@@ -323,7 +335,7 @@ header nav a.active {
   left: 0;
   width: 0;
   height: 100%;
-  background-color: rgba(31, 41, 51, 0.5);
+  background-color: rgba(23, 19, 15, 0.5);
   border: none;
   padding: 0;
   cursor: default;
@@ -338,7 +350,7 @@ header nav a.active {
   width: 0;
   background-color: var(--white);
   overflow: auto;
-  box-shadow: -4px 0 12px rgba(31, 41, 51, 0.15);
+  box-shadow: -4px 0 12px rgba(23, 19, 15, 0.15);
   transition: width 0.25s;
 }
 
@@ -426,6 +438,9 @@ header nav a.active {
   margin-bottom: 12px;
 }
 
+/* On --ink, --accent-dark drops to 3.02:1, below AA for this size. Both dark
+   surfaces take the full-strength gold instead (12.08:1). */
+.hero .eyebrow,
 .section-dark .eyebrow { color: var(--accent); }
 
 /* Hero */
@@ -459,6 +474,61 @@ header nav a.active {
 .hero-compact h1 { max-width: none; }
 .hero-compact p { margin-bottom: 0; }
 
+/* Proof strip: credentials immediately below the hero. The gold wash is where
+   the brand colour does real work on a light page; note --accent is the fill and
+   the border, never the type (1.53:1 on white). Labels use --accent-dark. */
+
+.proof-strip {
+  background: var(--accent-light);
+  border-top: 4px solid var(--accent);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 20px;
+}
+
+.proof-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 16px;
+  text-align: center;
+}
+
+.proof-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.proof-figure {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* For word-based credentials ("Licensed & Bonded") that would otherwise tower
+   over the numeric figures beside them. */
+.proof-figure-text {
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.proof-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-dark);
+}
+
 /* Cards */
 
 .card-grid {
@@ -480,7 +550,19 @@ header nav a.active {
 
 .card-accent { border-top: 4px solid var(--accent); }
 
-/* Project tiles — placeholder frames until real photography lands */
+/* Numbered delivery-phase card (Services > How We Work). */
+.card-phase { border-top: 4px solid var(--accent); }
+
+.phase-num {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--accent-dark);
+  margin-bottom: 6px;
+}
+
+/* Project tiles: placeholder frames until real photography lands */
 
 .tile {
   border: 1px solid var(--line);
@@ -511,6 +593,23 @@ header nav a.active {
 .tile-body { padding: 18px 20px; }
 .tile-body h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .tile-body p { margin: 0; font-size: 0.92rem; }
+
+/* Sector badge on a project tile. Competitors all label their work by sector
+   (healthcare, retail, education). It's how an owner finds the relevant job. */
+.tile-sector {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.tile-meta { color: var(--slate-light); }
 
 /* Split content */
 
@@ -551,6 +650,14 @@ header nav a.active {
 .detail-list dd a { color: var(--ink); }
 .detail-list dd a:hover { color: var(--accent-dark); }
 
+/* Side-by-side variant, for credential rows like the safety block. */
+.detail-list-inline { grid-template-columns: repeat(2, 1fr); }
+
+/* On --ink the default dt/dd colors invert into failures: --slate-light drops to
+   2.0:1 and --ink is invisible on itself. Gold labels, white values. */
+.section-dark .detail-list dt { color: var(--accent); }
+.section-dark .detail-list dd { color: var(--white); }
+
 /* CTA strip */
 
 .cta-strip {
@@ -563,7 +670,7 @@ header nav a.active {
 .cta-strip h2 { margin-bottom: 8px; }
 .cta-strip p { max-width: 56ch; margin: 0 auto 22px; }
 
-/* Placeholder banner — remove once real copy lands */
+/* Placeholder banner: remove once real copy lands */
 
 .wip-banner {
   background: var(--ink-soft);
@@ -591,8 +698,15 @@ footer {
   gap: 28px;
 }
 
+/* Same reason as the header: a bare <picture> is inline and would leave a
+   baseline gap under the logo. */
+.footer-brand picture { display: block; }
+
 .footer-brand img {
-  max-width: 200px;
+  width: 200px;
+  height: auto;
+  max-width: 100%;
+  display: block;
   margin-bottom: 12px;
 }
 
@@ -636,6 +750,11 @@ footer {
 }
 
 .footer-bottom a { color: var(--accent); }
+
+/* Builder credit tag. The width/height attributes on the <img> carry the SVG's
+   true 2338x1080 intrinsic size, so the box reserved before it loads has the
+   right aspect; the global `img { height: auto }` scales it from this width.
+   Same rule and same 150px as funcitygamesnwa.com, deliberately. */
 .footer-bottom img { max-width: 150px; }
 
 /* Responsive */
@@ -655,6 +774,10 @@ footer {
   .hero { padding: 110px 40px; }
   .hero-compact { padding: 68px 40px; }
   .header-logo { height: 56px; }
+
+  .proof-strip { padding: 32px 40px; }
+  .proof-inner { grid-template-columns: repeat(4, 1fr); gap: 16px 24px; }
+  .detail-list-inline { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media screen and (min-width: 640px) and (max-width: 939px) {

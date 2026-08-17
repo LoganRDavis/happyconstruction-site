@@ -6,7 +6,7 @@
 # trailing-slash variants and legacy aliases here.
 #
 # Note: apex -> www (happyconstructionar.com -> www.happyconstructionar.com) cannot
-# be configured here — _redirects sources are path-only. Configure that as a
+# be configured here: _redirects sources are path-only. Configure that as a
 # Cloudflare Redirect Rule at the zone level (dashboard > Rules > Redirect Rules).
 
 # Trailing-slash variants -> canonical extensionless URL
@@ -20,7 +20,7 @@
 
 # Tooling/source files that ship via the Git Integration deploy (.cfignore is
 # only honored by `wrangler pages deploy`, not Git pushes). Bounce them home
-# with a 302 — Pages _redirects only supports 301/302/303/307/308 status codes
+# with a 302, because Pages _redirects only supports 301/302/303/307/308 status codes
 # (4xx rewrites are silently ignored), so a redirect to / is the lightweight
 # alternative to wiring up a Pages Function. 302 (not 301) so browsers and
 # Google don't cache the mapping permanently in case any of these paths is
@@ -39,3 +39,4 @@
 /.devcontainer/*                 /  302
 /.git/*                          /  302
 /images/README.md                /  302
+/brand/*                         /  302

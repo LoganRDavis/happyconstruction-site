@@ -15,3 +15,8 @@ serve.py
 # Image source archives — kept in the repo as masters but not needed in prod.
 # See images/README.md "Source / archive" section.
 images/README.md
+
+# Brand masters — the five hand-authored SVGs every shipped raster derives from.
+# Versioned here so the repo can rebuild its own assets, but nothing on the site
+# links to them directly.
+brand

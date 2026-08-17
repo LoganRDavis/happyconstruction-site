@@ -10,17 +10,29 @@ const NAV_LINKS = [
 	{ href: '/contact', label: 'Contact' },
 ];
 
-// PLACEHOLDER — see CLAUDE.md > "Placeholders". Nothing here is confirmed.
+// PLACEHOLDER. See CLAUDE.md > "Placeholders". Nothing here is confirmed.
 const PHONE_DISPLAY = '(555) 555-5555';
 const PHONE_TEL = '+15555555555';
 const EMAIL = 'info@happyconstructionar.com';
 
-// PLACEHOLDER — swap for the real logo variants when they land.
-// Two variants are needed: dark artwork for the white header, light artwork for
-// the dark footer. See images/README.md for expected filenames and the
-// <picture> markup to replace these <img> tags with.
-const LOGO_SRC = '/images/logo-placeholder.svg';
-const LOGO_SRC_LIGHT = '/images/logo-placeholder-light.svg';
+// Horizontal lockup, no tagline. Two variants: the default black wordmark for
+// the white header, a knockout white wordmark for the charcoal footer. Rasters
+// are 256w (1x) and 512w (2x); intrinsic size is 256x78 for both. Regenerate
+// from brand/. See brand/README.md.
+const LOGO_W = 256;
+const LOGO_H = 78;
+const LOGO_ALT = 'Happy Construction';
+
+// WebP first with a PNG fallback. `attrs` lands on the <img>, which is what the
+// stylesheet targets; the <picture> is a transparent wrapper.
+function logoPicture(variant, attrs = '') {
+	const base = `/images/logo-horizontal${variant === 'light' ? '-light' : ''}`;
+	return `
+		<picture>
+			<source type="image/webp" srcset="${base}-256.webp 1x, ${base}-512.webp 2x">
+			<img src="${base}-256.png" srcset="${base}-512.png 2x" alt="${LOGO_ALT}" width="${LOGO_W}" height="${LOGO_H}" ${attrs}>
+		</picture>`;
+}
 
 function currentPath() {
 	let p = window.location.pathname;
@@ -47,7 +59,7 @@ class SiteHeader extends HTMLElement {
 			<header>
 				<div id="headerContent">
 					<a href="/" class="header-logo-link" aria-label="Happy Construction home">
-						<img class="header-logo" src="${LOGO_SRC}" alt="Happy Construction" width="192" height="48">
+						${logoPicture('dark', 'class="header-logo" fetchpriority="high"')}
 					</a>
 
 					<button class="hamburger-icon" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu-container">
@@ -127,9 +139,9 @@ class SiteFooter extends HTMLElement {
 				<div class="footer-container">
 					<div class="footer-brand">
 						<a href="/">
-							<img src="${LOGO_SRC_LIGHT}" alt="Happy Construction" width="200" height="50" loading="lazy" decoding="async">
+							${logoPicture('light', 'loading="lazy" decoding="async"')}
 						</a>
-						<p>Commercial general contractor. Placeholder positioning line — replace once the client confirms scope and service area.</p>
+						<p>Commercial general contractor. Placeholder positioning line, pending confirmation of scope and service area.</p>
 					</div>
 					<div class="footer-col">
 						<h4>Explore</h4>
@@ -157,7 +169,9 @@ class SiteFooter extends HTMLElement {
 				</div>
 				<div class="footer-bottom">
 					<div>&copy; ${year} Happy Construction. All rights reserved.</div>
-					<a href="https://www.loganrdavis.com" target="_blank" rel="noopener noreferrer" aria-label="Built by Logan R. Davis">www.loganrdavis.com</a>
+					<a href="https://www.loganrdavis.com" target="_blank" rel="noopener noreferrer" aria-label="Built by Logan R. Davis">
+						<img src="/images/lrd-tag.svg" alt="www.loganrdavis.com" width="2338" height="1080" loading="lazy" decoding="async">
+					</a>
 				</div>
 			</footer>
 		`;

@@ -6,7 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static marketing site for Happy Construction — a commercial general contractor. No build step, no framework, no package manager. Plain HTML/CSS/JS served as files, deployed to Cloudflare Pages.
 
-**This repo is currently a scaffold.** The Pages plumbing, shared chrome, and design-token system are real and working. Every piece of *content* — copy, palette, logo, photography, phone, email, address, service list, project list — is a deliberate placeholder awaiting client direction. Do not treat any of it as fact, and do not invent replacements: if you need a value that isn't in the "Placeholders" table below, ask.
+**This repo is currently a scaffold.** The Pages plumbing, shared chrome, and design-token system are real and working. **The logo, icon set, share card, and palette are real** — the brand assets come from the client's kit and are generated from the masters in `brand/`; the palette is derived from the brand gold. Every piece of *content* — copy, photography, phone, email, address, service list, project list, and every number in the proof strip and safety block — is a deliberate placeholder awaiting client direction. Do not treat any of it as fact, and do not invent replacements: if you need a value that isn't in the "Placeholders" table below, ask.
+
+**Never invent a credential.** The proof strip (`index.html`) and safety block (`about.html`) hold fake figures — EMR, project counts, license number, years in business. These are the highest-risk placeholders in the repo: unlike lorem copy, a fabricated EMR or license number looks plausible and would ship as a lie. Drop any line the client can't substantiate rather than softening it.
 
 ## Placeholders
 
@@ -17,10 +19,11 @@ Nothing in this table is real. Replace each before launch.
 | `(555) 555-5555` / `+15555555555` | `js/components.js` (`PHONE_DISPLAY`, `PHONE_TEL`), `contact.html`, `index.html` JSON-LD |
 | `info@happyconstructionar.com` | `js/components.js` (`EMAIL`), `contact.html`, `index.html` JSON-LD |
 | Office address, hours | `contact.html` ("Address pending" / "Hours pending") |
-| Amber/charcoal palette | `:root` in `css/main.css`, `css/404.css`, `theme_color` in `site.webmanifest`, `<meta name="theme-color">` in every page head |
-| `images/logo-placeholder.svg` (dark) + `images/logo-placeholder-light.svg` (reversed), `/favicon.svg`, `/icon-*.png`, `/apple-touch-icon.png` | Generated stand-ins — see `images/README.md`. **Two logo variants are required**: the header is white, the footer is charcoal. |
+| Proof-strip figures (`00` years, `000+` projects, `0.00` EMR, `AR License #000000`) | `index.html` `.proof-strip`. **Fabricating any of these would ship a false credential** — see the warning above. |
+| Safety figures (EMR, recordable rate, OSHA hours, affiliations) | `about.html` `.section-dark` safety block. Same warning. |
 | Service categories | `services.html` cards + the matching three cards on `index.html` — keep them in sync |
-| Project tiles | `projects.html`, `index.html` — striped `.tile-media` frames stand in for photography |
+| Delivery-phase descriptions | `services.html` "How We Work". The four phase *names* are industry-standard and can stay; every description is placeholder. |
+| Project tiles | `projects.html`, `index.html` — striped `.tile-media` frames stand in for photography; sector, name, city, and year are all placeholder. Ask whether any project is under NDA or needs owner sign-off. |
 | Footer "Service Areas" | `js/components.js` `SiteFooter` |
 | All body copy | Every `.html` file. Every paragraph is marked "Placeholder". |
 | `.wip-banner` | Top of each page's `<main>`. **Delete the `<p class="wip-banner">` from all five pages before launch**, and the `.wip-banner` rule from `css/main.css`. |
@@ -44,7 +47,15 @@ Each page is a fully self-contained HTML file — there is no template engine. T
 3. Add a trailing-slash alias to `_redirects` (`/foo/ → /foo 301`). The extensionless URL is served natively by Pages; do **not** add `/foo → /foo.html` rules (they loop against Pages' built-in `.html` stripping).
 4. If the page should appear in primary nav, add it to `NAV_LINKS` in `js/components.js` using the extensionless href.
 
-**Shared chrome via web components.** Header and footer are custom elements defined in `js/components.js` (`<site-header>`, `<site-footer>`). Pages must include `<script src="/js/components.js" defer>` and drop the elements into the body. Active nav state is derived from `window.location.pathname`, so nav links use absolute paths from root. Phone, email, and the logo path are module-level constants at the top of that file — change them in one place, not per page (except the JSON-LD blocks, which are per-page and must be updated separately).
+**Shared chrome via web components.** Header and footer are custom elements defined in `js/components.js` (`<site-header>`, `<site-footer>`). Pages must include `<script src="/js/components.js" defer>` and drop the elements into the body. Active nav state is derived from `window.location.pathname`, so nav links use absolute paths from root. Phone, email, and the logo geometry are module-level constants at the top of that file — change them in one place, not per page (except the JSON-LD blocks, which are per-page and must be updated separately).
+
+Both logo variants render through a single `logoPicture(variant, attrs)` helper that emits a `<picture>` with a WebP `<source>` and a PNG fallback plus a 2x `srcset`. The header takes the black wordmark, the footer the white knockout. See `images/README.md`.
+
+### Brand assets
+
+`brand/` holds the hand-authored SVG masters. **Every shipped raster and `favicon.svg` is generated from them** by `python3 brand/build-site-assets.py` — don't hand-edit the outputs. The script is deterministic, so a rerun leaving a dirty tree means a master actually changed. `brand/README.md` covers the two traps it encodes: aspect-ratio distortion on square icons, and the simplified-mark-below-24px rule for favicons.
+
+`brand/` is excluded from the deploy via `.cfignore` and 302-bounced in `_redirects`, same as the other tooling paths.
 
 **Asset paths are absolute** (`/css/main.css`, `/images/...`) — relative paths will break because the dev server and Cloudflare Pages both serve from root.
 
@@ -52,13 +63,38 @@ Each page is a fully self-contained HTML file — there is no template engine. T
 
 ### Design tokens
 
-CSS custom properties in `:root` at the top of `css/main.css` are the single source of truth for color, type, elevation, and geometry. **Nothing below `:root` hardcodes a hex** — that is intentional, so the whole site re-skins from that one block once the real brand lands. Keep it that way.
+CSS custom properties in `:root` at the top of `css/main.css` are the single source of truth for color, type, elevation, and geometry. **Nothing below `:root` hardcodes a hex** — that is intentional, so the whole site re-skins from that one block. Keep it that way.
 
-The current values are a neutral commercial-GC stand-in (charcoal `--ink`, safety amber `--accent`, concrete greys), *not* Happy Construction's brand. When the logo arrives:
+**The palette is real**, derived from the brand gold. The neutrals are deliberately warm-shifted; the original cool blue-greys fought the gold.
 
-1. Pull the actual colors out of it and replace the Brand and Surface tokens.
-2. Update `css/404.css` (hardcoded, standalone).
-3. Update `theme_color` in `site.webmanifest` and the `<meta name="theme-color">` in all five page heads — these are separate hardcoded hexes that will silently drift.
+| Token | Hex | Role |
+| --- | --- | --- |
+| `--ink` | `#17130F` | warm near-black — headings, hero and footer ground |
+| `--slate` | `#574F45` | body copy, 8.05:1 on white |
+| `--slate-light` | `#6E6459` | muted labels, 5.78:1 on white |
+| `--accent` | `#FDCB17` | brand gold — **fill only** |
+| `--accent-dark` | `#7A5E00` | gold that survives as text, 6.12:1 on white |
+| `--accent-light` | `#FFF1C2` | gold wash — proof strip, sector badges |
+| `--concrete` | `#FAF7F1` | warm off-white, alternating sections |
+
+Two rules the sheet depends on:
+
+* **`--accent` is never text on a light surface.** `#FDCB17` is 1.53:1 on white. It is a fill: buttons, rules, the CTA band, the proof strip, and type on `--ink` (12.08:1 there). Gold *text* on light is `--accent-dark`. On `--ink`, even `--accent-dark` fails at 3.02:1 — that's why `.hero .eyebrow` and `.section-dark .eyebrow` both override to `--accent`.
+* **`--accent-dark` must stay dark enough to carry white text**, because `.btn:hover` and `.header-phone:hover` reverse out of it.
+
+Every pair is verified AA. If you change a token, re-audit — the fastest way is a headless pass that walks every text node's computed color against its composited background, since the failures that matter are the inherited ones (`.section-dark` inverting `.detail-list`, a `.hero` eyebrow) rather than anything visible in `:root`.
+
+**Four files hold color and drift silently.** A palette change means all four together: `:root` in `css/main.css`, `css/404.css` (hardcoded, standalone), `theme_color` in `site.webmanifest`, and `<meta name="theme-color">` in all five page heads. `theme-color` is currently the gold `#FDCB17`, not `--ink` — deliberate, so the mobile browser chrome carries the brand.
+
+The white-knockout footer logo was built against `--ink`. If the footer ground changes materially, confirm the mark's black linework still separates.
+
+### Visual direction
+
+The brand is a yellow smiley face in a hard hat with the tagline "Building with a smile." Every commercial GC surveyed in this market reads sober — navy (Nabholz, Liberty), red (Crossland), neutral grey (Commerce, Oelke). None are playful.
+
+**So let the logo be the only friendly thing on the page.** The gold does the warmth; everything around it — typography, project naming, numbers, safety language — stays as sober as the competition. That is why the hero and footer sit on near-black rather than on gold: the dark ground frames the mark instead of amplifying it. A site that is playful *everywhere* reads residential, and the buyer here is an owner or developer comparing bids.
+
+The structural additions (proof strip, safety block, sector-labelled project tiles, delivery-phase framing) all come from that survey — they exist because every competitor has them and their absence reads as an unqualified firm. Don't remove them to save space; fill them in.
 
 ### Fonts
 
@@ -85,7 +121,7 @@ When a typeface is chosen, self-host it rather than linking Google Fonts — the
 
 `GeneralContractor` is a `LocalBusiness` subtype, which means Google expects a full `address` for rich results. There is no `address` yet because the office location is unconfirmed — add `address` and `areaServed` once the client provides them. If it turns out they're a service-area business with no public storefront, drop back to plain `Organization` instead, which has no address requirement.
 
-**OG/Twitter `image` URLs must point to a `.png`, not `.webp`,** once share cards exist. LinkedIn's scraper and several link-unfurl pipelines (older Slack, some iMessage edge cases, WhatsApp) reject WebP and fall back to a no-image card. Set `og:image:type` to `image/png` to match, and give every page an `og:image:alt` and `twitter:image:alt`. No page has an `og:image` yet — each has a TODO comment where it goes.
+All five pages point `og:image` / `twitter:image` at `/images/og-card.png` (1200x630), with `og:image:type`, dimensions, and both `alt` variants set. **Keep it `.png`, not `.webp`** — LinkedIn's scraper and several link-unfurl pipelines (older Slack, some iMessage edge cases, WhatsApp) reject WebP and fall back to a no-image card. The card is currently the brand lockup on a gold field; per-page art would be better once real photography exists.
 
 ## Deploy
 
@@ -102,8 +138,12 @@ Cloudflare Pages, Git Integration, `main` branch. Build command: none. Build out
 - [ ] Cloudflare Pages project created and connected to this repo
 - [ ] Custom domain `www.happyconstructionar.com` added in Pages
 - [ ] Apex → www Redirect Rule created at the zone level
-- [ ] Real logo dropped in and palette re-derived from it
+- [x] Real logo, icon set, and share card dropped in
+- [x] Palette re-derived from the brand gold
+- [ ] Real credentials for the proof strip and safety block (EMR, license #, counts)
 - [ ] Real contact details, service list, and project list from the client
+- [ ] Team section on `about.html` — named people with roles (competitors all have one)
+- [ ] Service-area page(s) — declined during scaffolding, worth revisiting
 - [ ] Contact form approach decided (Pages Function vs. third-party vs. mailto)
-- [ ] Share card (1200x630 PNG) + `og:image` tags on all five pages
+- [ ] Typeface chosen and self-hosted (the wordmark is a heavy condensed grotesque)
 - [ ] `.wip-banner` removed from all pages

@@ -5,21 +5,29 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Contact | Happy Construction</title>
-	<meta name="description" content="Get in touch with Happy Construction. Placeholder description — replace before launch.">
-	<meta name="theme-color" content="#1F2933">
+	<meta name="description" content="Get in touch with Happy Construction. Placeholder description. Replace before launch.">
+	<meta name="theme-color" content="#FDCB17">
 	<link rel="canonical" href="https://www.happyconstructionar.com/contact">
 
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Happy Construction">
 	<meta property="og:title" content="Contact | Happy Construction">
-	<meta property="og:description" content="Get in touch with Happy Construction. Placeholder description — replace before launch.">
+	<meta property="og:description" content="Get in touch with Happy Construction. Placeholder description. Replace before launch.">
 	<meta property="og:url" content="https://www.happyconstructionar.com/contact">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:image" content="https://www.happyconstructionar.com/images/og-card.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="The Happy Construction logo: a smiling face in a hard hat marked H, beside the words Happy Construction and the tagline Building with a smile.">
+	<meta name="twitter:image" content="https://www.happyconstructionar.com/images/og-card.png">
+	<meta name="twitter:image:alt" content="The Happy Construction logo: a smiling face in a hard hat marked H, beside the words Happy Construction and the tagline Building with a smile.">
 
+	<link rel="icon" href="/favicon.ico" sizes="32x32">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="stylesheet" href="/css/main.css?v=20260811a">
+	<link rel="stylesheet" href="/css/main.css?v=20260817b">
 	<script src="/js/components.js" defer></script>
 
 	<script type="application/ld+json">
@@ -38,13 +46,13 @@
 		<site-header></site-header>
 
 		<main id="main-content">
-			<p class="wip-banner">Scaffold preview — all copy, imagery, and contact details on this site are placeholders.</p>
+			<p class="wip-banner">Preview build. Every headline, paragraph, image, and contact detail on this site is a placeholder.</p>
 
 			<section class="hero hero-compact">
 				<div class="hero-inner">
 					<span class="eyebrow">Contact</span>
 					<h1>Get in touch</h1>
-					<p>One-paragraph intro. Replace once the client confirms how they want inbound leads handled.</p>
+					<p>One-paragraph intro. Final copy pending a decision on how inbound leads should be handled.</p>
 				</div>
 			</section>
 
@@ -72,11 +80,15 @@
 							</div>
 						</dl>
 					</div>
+					<!-- Implementation note: Pages serves static files only, so a working
+					     form needs a Pages Function, a third-party endpoint (Formspree,
+					     Basin), or a plain mailto: link. The CSP in _headers sets
+					     form-action 'self' and connect-src 'self'; a third-party endpoint
+					     needs both relaxed to that specific host first. -->
 					<div class="card">
 						<h3>Contact form</h3>
-						<p>No form is wired up yet. Cloudflare Pages serves static files only, so a working form needs a backend — a Pages Function, Formspree/Basin, or a plain <code>mailto:</code> link.</p>
-						<p>Note that the CSP in <code>_headers</code> currently sets <code>form-action 'self'</code> and <code>connect-src 'self'</code>. A third-party form endpoint will need those relaxed to the specific host before it works.</p>
-						<p>Decide this with the client, then build it. Until then the phone and email above are the contact path.</p>
+						<p>The form is not built yet. Once we know where inquiries should land, an inbox, a shared address, or a CRM, it goes here.</p>
+						<p>Until then, the phone number and email above are the contact path.</p>
 					</div>
 				</div>
 			</section>

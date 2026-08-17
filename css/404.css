@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-  background: #1F2933;
+  background: #17130F;
   color: #fff;
   min-height: 100vh;
   display: flex;
@@ -20,7 +20,7 @@ body {
 ._404 {
   font-size: clamp(6rem, 20vw, 11rem);
   font-weight: 800;
-  color: #F2A007;
+  color: #FDCB17;
   line-height: 1;
   letter-spacing: -0.03em;
   margin-bottom: 12px;
@@ -28,7 +28,7 @@ body {
 
 hr {
   border: 0;
-  border-top: 4px solid #F2A007;
+  border-top: 4px solid #FDCB17;
   margin: 20px auto;
   width: 80px;
 }
@@ -50,11 +50,11 @@ hr {
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #1F2933;
-  background: #F2A007;
+  color: #17130F;
+  background: #FDCB17;
   border-radius: 4px;
   text-decoration: none;
   transition: background-color 0.15s ease;
 }
 
-.btn:hover { background: #FFB524; }
+.btn:hover { background: #FEE9A3; }

@@ -1,7 +1,16 @@
 # Cloudflare Pages headers
 # https://developers.cloudflare.com/pages/configuration/headers/
 
+# ---------------------------------------------------------------------------
+# PREVIEW ONLY. X-Robots-Tag below keeps the *.pages.dev scaffold, and its fake
+# credentials, out of search results while the client reviews it.
+# DELETE THAT ONE LINE BEFORE THE REAL DOMAIN GOES LIVE or production ships
+# deindexed. robots.txt stays permissive on purpose: a Disallow would stop
+# crawlers from ever reading the noindex, which is the opposite of the goal.
+# ---------------------------------------------------------------------------
+
 /*
+  X-Robots-Tag: noindex, nofollow
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
@@ -10,7 +19,7 @@
   Cross-Origin-Resource-Policy: same-origin
   Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), payment=(), usb=()
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; manifest-src 'self'; object-src 'none'; upgrade-insecure-requests
-# No Cache-Control on /* — Pages concatenates header values rather than
+# No Cache-Control on /*, because Pages concatenates header values rather than
 # overriding them, so any value here gets merged into the per-path rules
 # below (immutable CSS, long-cache fonts/images) and the strictest directive
 # wins, defeating the cache strategy. Pages already sends a sensible HTML
@@ -20,12 +29,18 @@
 /css/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Ready for self-hosted WOFF2 — see CLAUDE.md "Fonts". No-op until fonts/ exists.
+# Ready for self-hosted WOFF2. See CLAUDE.md "Fonts". No-op until fonts/ exists.
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
 
 # Moderate: images change with brand refreshes; no filename fingerprinting
+# Includes /images/og-card.png. The global `Cross-Origin-Resource-Policy:
+# same-origin` does not break unfurls: CORP is browser-enforced on cross-origin
+# embeds, while Slack/Facebook/LinkedIn/Discord scrape server-side and re-host
+# the card on their own CDN. Don't try to relax it with a per-path rule, because Pages
+# concatenates matching values, which would emit an invalid
+# `same-origin, cross-origin`. Only direct hotlinking is blocked, which is fine.
 /images/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
@@ -36,10 +51,16 @@
 /favicon.svg
   Cache-Control: public, max-age=604800
 
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
 /icon-192.png
   Cache-Control: public, max-age=604800
 
 /icon-512.png
+  Cache-Control: public, max-age=604800
+
+/icon-maskable-512.png
   Cache-Control: public, max-age=604800
 
 /apple-touch-icon.png
