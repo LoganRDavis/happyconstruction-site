@@ -15,6 +15,10 @@ rebuild its own assets without hunting down an external folder.
 
 A "mark" is the symbol alone; a "lockup" is symbol plus type.
 
+`print-variants/` holds colour-separation variants of the mark for physical
+output. They are not masters, nothing here derives from them, and
+`build-site-assets.py` ignores them — see that directory's README.
+
 ## Rebuilding the site's assets
 
 ```sh
