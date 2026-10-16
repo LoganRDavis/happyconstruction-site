@@ -21,7 +21,7 @@ What the site states, and where each fact lives. Change every location together.
 | Fact | Status | Where |
 | --- | --- | --- |
 | Phone `(877) 624-2637` / `+18776242637` | Verified by Logan 2026-10-16. | `js/components.js` (`PHONE_DISPLAY`, `PHONE_TEL`), `index.html` `#contact` and JSON-LD `telephone` |
-| Email `info@happyconstructionar.com` | Forwarded to the owner's personal inbox via Cloudflare Email Routing (Logan setting up). | `js/components.js` (`EMAIL`), `index.html` `#contact` (two `mailto:` links) and JSON-LD `email` |
+| Email `info@happyconstructionar.com` | Forwarded to the owner's personal inbox via Cloudflare Email Routing. | `js/components.js` (`EMAIL`), `index.html` `#contact` (two `mailto:` links) and JSON-LD `email` |
 | Services: build-outs and remodels, fixtures/displays/casework, electrical and signage | From Logan: in-store work, mostly retail. "Could be wrong", so the framing stays "general contractor". **No ground-up construction.** | `index.html` "What We Take On" cards, hero, phase 03, `<title>`/`og:title`, meta/OG descriptions, JSON-LD `description`, `site.webmanifest`, footer line in `js/components.js` |
 | Service area: across the U.S. | From Logan | H1, hero eyebrow and paragraph, meta/OG descriptions, footer line, JSON-LD `areaServed` |
 
@@ -141,8 +141,8 @@ Cloudflare Pages, Git Integration, `main` branch. Build command: none. Build out
 - [x] `_headers` noindexes the `pages.dev` hosts only, so the real domain is indexable (takes effect on push)
 - [x] Logan reviewed locally (2026-10-16)
 - [x] Phone number verified by Logan (2026-10-16)
-- [ ] Email Routing: `info@happyconstructionar.com` → owner's personal address, tested end to end
+- [x] Email Routing: `info@happyconstructionar.com` → owner's personal address (set up by Logan 2026-10-16; Cloudflare MX records confirmed)
 - [x] Pushed 2026-10-16 (deploys to the noindexed `pages.dev` host)
-- [ ] Custom domain `www.happyconstructionar.com` added in Pages (no DNS records resolve yet, checked 2026-10-16)
-- [ ] Apex → www Redirect Rule created at the zone level
+- [x] Custom domains `www` and apex added in Pages (2026-10-16)
+- [x] Apex → www Redirect Rule at the zone level: `https://happyconstructionar.com/*` → `https://www.happyconstructionar.com/${1}`, 301, query string preserved. Verified live 2026-10-16. The target must include `www.` or it loops.
 - [ ] Optional later: credentials, projects, team, contact form, self-hosted typeface
