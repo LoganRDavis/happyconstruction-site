@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static landing page for Happy Construction, a general contractor doing retail and commercial interior work (build-outs, fixtures and displays, casework, electrical, signage) nationwide. No build step, no framework, no package manager. Plain HTML/CSS/JS served as files, deployed to Cloudflare Pages.
 
-**The site is one page on purpose.** The owner asked for a single professional landing page customers can find, and supplied no photos, projects, credentials, team, or history. The original five-page scaffold (Services, Projects, About, Contact) was collapsed into `index.html` on 2026-10-16. The old paths 301 to `/` (and `/contact` to `/#contact`) in `_redirects`.
+**The site is one page on purpose.** The owner asked for a single professional landing page customers can find, and supplied no photos, projects, credentials, team, or history. The original five-page scaffold (Services, Projects, About, Contact) was collapsed into `index.html` on 2026-10-16. The old paths, including their trailing-slash and `.html` forms, 301 to `/` (`/contact` to `/#contact`) in `_redirects`.
 
 **The logo, icon set, share card, and palette are real**, generated from the brand masters in `brand/`. The tagline "Building with a smile." is the client's.
 
@@ -44,7 +44,7 @@ If the site grows back to multiple pages, there is no template engine. Copy `ind
 1. `<title>`, `<meta name="description">`, OG/Twitter tags, and `<link rel="canonical">`. **Canonicals and all internal `href`s are extensionless** (`/about`, not `/about.html`) — Cloudflare Pages serves `/foo.html` under `/foo` and 308-redirects the `.html` form, so using `.html` URLs in canonicals creates a redirect loop with any reverse rule.
 2. Add the page to `sitemap.xml` with its extensionless URL. **Do not add `<lastmod>`** unless you have a real per-page edit-tracking workflow — static or generation-time dates get ignored by Google and waste the signal.
 3. Add a trailing-slash alias to `_redirects` (`/foo/ → /foo 301`). The extensionless URL is served natively by Pages; do **not** add `/foo → /foo.html` rules (they loop against Pages' built-in `.html` stripping).
-4. Reintroduce a nav in `js/components.js`. The `NAV_LINKS` / hamburger version is in git history (`15628e2`). Remove the matching old-path redirect from `_redirects` first, or the new page will never be reachable.
+4. Reintroduce a nav in `js/components.js`. The `NAV_LINKS` / hamburger version is in git history (`15628e2`). Each retired page has three rules in `_redirects` (`/foo`, `/foo/`, `/foo.html`). Delete the `/foo` and `/foo.html` rules and repoint `/foo/` to `/foo` (step 3), or the page will never be reachable.
 
 **Shared chrome via web components.** Header and footer are custom elements defined in `js/components.js` (`<site-header>`, `<site-footer>`). The page includes `<script src="/js/components.js" defer>` and drops the elements into the body. Phone, email, and the logo geometry are module-level constants at the top of that file. The `#contact` section and JSON-LD in `index.html` repeat the phone and email in static HTML, so crawlers and no-JS visitors get them. The `#contact` section is wrapped in `<!--email_off-->`, because Cloudflare Email Obfuscation is on for the zone and would otherwise serve the address as a JS-decoded placeholder. The footer email is JS-rendered, so obfuscation never sees it. Change all three places together.
 
