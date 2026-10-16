@@ -5,14 +5,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Happy Construction | Commercial General Contractor</title>
-	<meta name="description" content="Happy Construction is a commercial general contractor. Placeholder description. Replace with real positioning copy before launch.">
+	<meta name="description" content="Happy Construction is a commercial general contractor for new construction, build-outs, renovations, and preconstruction. Call or email to talk through your project.">
 	<meta name="theme-color" content="#FDCB17">
 	<link rel="canonical" href="https://www.happyconstructionar.com/">
 
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Happy Construction">
 	<meta property="og:title" content="Happy Construction | Commercial General Contractor">
-	<meta property="og:description" content="Happy Construction is a commercial general contractor. Placeholder description. Replace with real positioning copy before launch.">
+	<meta property="og:description" content="Happy Construction is a commercial general contractor for new construction, build-outs, renovations, and preconstruction. Call or email to talk through your project.">
 	<meta property="og:url" content="https://www.happyconstructionar.com/">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta property="og:image" content="https://www.happyconstructionar.com/images/og-card.png">
@@ -27,19 +27,24 @@
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="stylesheet" href="/css/main.css?v=20260817b">
+	<link rel="stylesheet" href="/css/main.css?v=20261016b">
 	<script src="/js/components.js" defer></script>
 
+	<!-- Organization, not GeneralContractor: the LocalBusiness subtypes expect a
+	     street address, and there is no public office yet. See CLAUDE.md >
+	     "Structured data". PLACEHOLDER: telephone and email. -->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "GeneralContractor",
+		"@type": "Organization",
 		"@id": "https://www.happyconstructionar.com/#organization",
 		"name": "Happy Construction",
+		"slogan": "Building with a smile.",
 		"url": "https://www.happyconstructionar.com",
+		"logo": "https://www.happyconstructionar.com/icon-512.png",
 		"telephone": "+15555555555",
 		"email": "info@happyconstructionar.com",
-		"description": "Commercial general contractor. Placeholder description. Replace before launch."
+		"description": "Commercial general contractor for new construction, build-outs, renovations, and preconstruction."
 	}
 	</script>
 </head>
@@ -49,113 +54,106 @@
 		<site-header></site-header>
 
 		<main id="main-content">
-			<p class="wip-banner">Preview build. Every headline, paragraph, image, and contact detail on this site is a placeholder.</p>
+			<p class="wip-banner">Preview build. The phone number and email on this page are placeholders.</p>
 
 			<section class="hero">
-				<div class="hero-inner">
-					<span class="eyebrow">Commercial General Contractor</span>
-					<h1>Headline goes here once positioning is set</h1>
-					<p>Two-sentence value proposition goes here. What Happy Construction builds, who it builds for, and why an owner or developer should call this team first. Final copy pending.</p>
-					<div class="hero-actions">
-						<a href="/contact" class="btn">Start a Project</a>
-						<a href="/projects" class="btn btn-ghost">See Our Work</a>
+				<div class="hero-inner hero-split">
+					<div>
+						<span class="eyebrow">Commercial General Contractor</span>
+						<h1>Commercial construction for owners, developers, and businesses.</h1>
+						<p>Happy Construction is a commercial general contractor. If you are planning a new building, a build-out, or a renovation, tell us what you have in mind and we will talk through scope, budget, and schedule.</p>
+						<div class="hero-actions">
+							<a href="#contact" class="btn">Start a Conversation</a>
+							<a href="#approach" class="btn btn-ghost">How We Work</a>
+						</div>
 					</div>
+					<figure class="hero-mark">
+						<img src="/images/mark.svg" alt="" width="454" height="553">
+						<figcaption>Building with a smile.</figcaption>
+					</figure>
 				</div>
 			</section>
 
-			<!-- Proof strip. Credentials sit directly below the hero because
-			     that is the first thing an owner's rep scans for. The market
-			     survey behind this section is in CLAUDE.md.
-			     PLACEHOLDER FIGURES: every number here is fake. Drop any item
-			     that cannot be substantiated rather than softening it. -->
-			<section class="proof-strip" aria-labelledby="proof-heading">
-				<h2 id="proof-heading" class="visually-hidden">Our credentials</h2>
-				<!-- role="list" is redundant per spec but required in practice:
-				     `list-style: none` makes Safari/VoiceOver drop list semantics,
-				     so the four credentials stop being announced as a set of four. -->
-				<ul class="proof-inner" role="list">
-					<li class="proof-item">
-						<span class="proof-figure">XX</span>
-						<span class="proof-label">Years Building in NWA</span>
-					</li>
-					<li class="proof-item">
-						<span class="proof-figure">XXX+</span>
-						<span class="proof-label">Projects Delivered</span>
-					</li>
-					<li class="proof-item">
-						<span class="proof-figure">X.XX</span>
-						<span class="proof-label">EMR Safety Rating</span>
-					</li>
-					<li class="proof-item">
-						<span class="proof-figure proof-figure-text">Licensed<br>&amp; Bonded</span>
-						<span class="proof-label">AR License #XXXXXX</span>
-					</li>
-				</ul>
-			</section>
-
-			<section class="section">
+			<!-- Copy rule for this page: describe what a commercial GC does in
+			     general terms. No project names, counts, years, ratings,
+			     credentials, or process promises (response times, single point
+			     of contact, warranty) until the client confirms them. CLAUDE.md
+			     has why. The service list here is repeated in the meta/OG
+			     descriptions, the JSON-LD, and the hero paragraph. -->
+			<section class="section" id="services" aria-labelledby="services-heading">
 				<div class="section-inner">
-					<h2 class="section-title">What We Build</h2>
-					<p class="section-lede">Placeholder overview of the service mix. These three cards mirror the Services page and stay in sync with it once real categories are confirmed.</p>
+					<h2 class="section-title" id="services-heading">What We Take On</h2>
+					<p class="section-lede">The kinds of commercial work we take on.</p>
 					<div class="card-grid">
 						<div class="card card-accent">
-							<h3>Service One</h3>
-							<p>Placeholder description of the first service category. Two or three sentences on scope, typical project size, and delivery method.</p>
+							<h3>New Construction</h3>
+							<p>Ground-up commercial buildings, from site work and foundations through final inspection and turnover.</p>
 						</div>
 						<div class="card card-accent">
-							<h3>Service Two</h3>
-							<p>Placeholder description of the second service category. Two or three sentences on scope, typical project size, and delivery method.</p>
+							<h3>Build-Outs &amp; Renovations</h3>
+							<p>Tenant build-outs, interior remodels, and improvements to existing buildings, scoped around how the space will be used.</p>
 						</div>
 						<div class="card card-accent">
-							<h3>Service Three</h3>
-							<p>Placeholder description of the third service category. Two or three sentences on scope, typical project size, and delivery method.</p>
+							<h3>Preconstruction</h3>
+							<p>Budgeting, scheduling, and constructability input while the design can still change, so the numbers are clear before a contract is signed.</p>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section class="section section-concrete">
+			<section class="section section-concrete" id="approach" aria-labelledby="approach-heading">
 				<div class="section-inner">
-					<h2 class="section-title">Recent Projects</h2>
-					<p class="section-lede">Placeholder project grid. The striped frames stand in until real project photography lands.</p>
-					<!-- Tiles carry sector + name + city + year. Named work is what
-					     an owner's rep scans for; an unnamed tile proves nothing.
-					     PLACEHOLDER: names, sectors, cities, and years all pending.
-					     Ask whether any project is under NDA or needs owner sign-off
-					     before it goes public. -->
-					<div class="card-grid">
-						<article class="tile">
-							<div class="tile-media">Project photo</div>
-							<div class="tile-body">
-								<span class="tile-sector">Sector</span>
-								<h3>Project Name</h3>
-								<p class="tile-meta">City, AR · Year</p>
-							</div>
-						</article>
-						<article class="tile">
-							<div class="tile-media">Project photo</div>
-							<div class="tile-body">
-								<span class="tile-sector">Sector</span>
-								<h3>Project Name</h3>
-								<p class="tile-meta">City, AR · Year</p>
-							</div>
-						</article>
-						<article class="tile">
-							<div class="tile-media">Project photo</div>
-							<div class="tile-body">
-								<span class="tile-sector">Sector</span>
-								<h3>Project Name</h3>
-								<p class="tile-meta">City, AR · Year</p>
-							</div>
-						</article>
-					</div>
+					<h2 class="section-title" id="approach-heading">How a Project Runs</h2>
+					<p class="section-lede">Commercial projects generally move through four phases. Here is what happens in each.</p>
+					<!-- Framed as delivery phases rather than "how we treat you"
+					     steps: the phase framing reads commercial, the friendlier
+					     version reads residential. -->
+					<ol class="card-grid card-grid-4 phase-list" role="list">
+						<li class="card card-phase">
+							<span class="phase-num" aria-hidden="true">01</span>
+							<h3>Preconstruction</h3>
+							<p>Review the drawings, price the work, and set the schedule, so scope, budget, and timeline are agreed before work starts.</p>
+						</li>
+						<li class="card card-phase">
+							<span class="phase-num" aria-hidden="true">02</span>
+							<h3>Site &amp; Structure</h3>
+							<p>Site work, foundations, and the structure where the job calls for them, with the trades scheduled and coordinated by the general contractor.</p>
+						</li>
+						<li class="card card-phase">
+							<span class="phase-num" aria-hidden="true">03</span>
+							<h3>Build-Out &amp; Systems</h3>
+							<p>The envelope, interiors, and mechanical, electrical, and plumbing work, sequenced so trades are not waiting on each other.</p>
+						</li>
+						<li class="card card-phase">
+							<span class="phase-num" aria-hidden="true">04</span>
+							<h3>Closeout &amp; Handoff</h3>
+							<p>Punch list, final inspections, and closeout documents, so the space is finished and the paperwork is in hand when you move in.</p>
+						</li>
+					</ol>
 				</div>
 			</section>
 
-			<section class="cta-strip">
-				<h2>Ready to talk about your project?</h2>
-				<p>Placeholder closing line. Final call-to-action copy pending.</p>
-				<a href="/contact" class="btn btn-dark">Contact Us</a>
+			<section class="section section-dark" id="contact" aria-labelledby="contact-heading">
+				<div class="section-inner split">
+					<div>
+						<span class="eyebrow">Contact</span>
+						<h2 class="section-title" id="contact-heading">Tell us about your project.</h2>
+						<p class="section-lede">Call or email with what you are planning, where it is, and roughly when you would like to start. We will get back to you to talk it through.</p>
+						<a href="mailto:info@happyconstructionar.com?subject=Project%20inquiry" class="btn">Email Us</a>
+					</div>
+					<!-- PLACEHOLDER: phone and email. They also live in
+					     js/components.js and the JSON-LD above; change all three. -->
+					<dl class="detail-list">
+						<div>
+							<dt>Phone</dt>
+							<dd><a href="tel:+15555555555">(555) 555-5555</a></dd>
+						</div>
+						<div>
+							<dt>Email</dt>
+							<dd><a href="mailto:info@happyconstructionar.com">info@happyconstructionar.com</a></dd>
+						</div>
+					</dl>
+				</div>
 			</section>
 		</main>
 

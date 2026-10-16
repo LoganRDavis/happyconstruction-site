@@ -169,6 +169,11 @@ def build(BUILD: Path):
             png(source, out, width)
             webp(out)
 
+    # --- hero mark -----------------------------------------------------------
+    # The full mark as a cleaned SVG, for the landing-page hero. Vector because
+    # it renders large (up to ~360px) and the detail holds at any size.
+    (IMAGES / "mark.svg").write_text(strip_editor_cruft(MARK.read_text()))
+
     # --- share card --------------------------------------------------------
     # 1200x630 PNG (not WebP — several unfurl pipelines reject WebP). Uses the
     # tagline lockup on a full-bleed gold field.

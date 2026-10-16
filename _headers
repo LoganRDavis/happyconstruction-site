@@ -2,8 +2,8 @@
 # https://developers.cloudflare.com/pages/configuration/headers/
 
 # ---------------------------------------------------------------------------
-# PREVIEW ONLY. X-Robots-Tag below keeps the *.pages.dev scaffold, and its fake
-# credentials, out of search results while the client reviews it.
+# PREVIEW ONLY. X-Robots-Tag below keeps the *.pages.dev preview, and its placeholder
+# phone and email, out of search results while the client reviews it.
 # DELETE THAT ONE LINE BEFORE THE REAL DOMAIN GOES LIVE or production ships
 # deindexed. robots.txt stays permissive on purpose: a Disallow would stop
 # crawlers from ever reading the noindex, which is the opposite of the goal.

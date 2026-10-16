@@ -2,18 +2,23 @@
 # https://developers.cloudflare.com/pages/configuration/redirects/
 #
 # Pages automatically serves /foo.html at /foo and 308-redirects /foo.html -> /foo.
-# Canonicals across the site are therefore extensionless; we only need to handle
-# trailing-slash variants and legacy aliases here.
+# Canonicals are therefore extensionless. This file folds the retired pages into
+# the landing page, handles legacy aliases, and bounces tooling paths.
 #
 # Note: apex -> www (happyconstructionar.com -> www.happyconstructionar.com) cannot
 # be configured here: _redirects sources are path-only. Configure that as a
 # Cloudflare Redirect Rule at the zone level (dashboard > Rules > Redirect Rules).
 
-# Trailing-slash variants -> canonical extensionless URL
-/services/ /services 301
-/projects/ /projects 301
-/about/    /about    301
-/contact/  /contact  301
+# The site was five pages and is now one landing page. The old paths fold
+# into it so any link or bookmark to the preview still lands somewhere.
+/services   /           301
+/services/  /           301
+/projects   /           301
+/projects/  /           301
+/about      /           301
+/about/     /           301
+/contact    /#contact   301
+/contact/   /#contact   301
 
 # Legacy/convenience aliases
 /home /         301

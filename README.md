@@ -10,7 +10,6 @@ https://www.happyconstructionar.com
 
 ## Status
 
-Scaffold. The Cloudflare Pages plumbing, shared chrome, and design-token system
-are in place; page copy, photography, and the brand palette are placeholders
-pending client direction. See the "Placeholders" section of `CLAUDE.md` for the
-find-and-replace list.
+A single landing page with real branding and generic, non-fabricated copy. The
+phone number and email are still placeholders. See the "Placeholders" section of
+`CLAUDE.md`.

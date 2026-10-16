@@ -13,6 +13,7 @@ master and re-run the script (see `brand/README.md`).
 | `logo-horizontal-light-256.png` / `.webp` | Wordmark knocked out to white for the charcoal footer — 1x |
 | `logo-horizontal-light-512.png` / `.webp` | Same, 2x retina |
 | `og-card.png` | 1200x630 share card — tagline lockup on a full-bleed gold field |
+| `mark.svg` | The full mark, editor cruft stripped — the landing-page hero image |
 | `lrd-tag.svg` | Builder credit tag in the footer bottom bar. Not a Happy Construction asset; copied verbatim from `funcitygamesnwa-site` so the credit is identical across client sites, and not produced by `build-site-assets.py`, so leave it out of any regeneration sweep. |
 
 Both logo variants are 256x78 intrinsic (the lockup is 3.32:1). The icon set
@@ -32,7 +33,7 @@ raster's true 256x78 so there's no layout shift.
 
 ## Share cards
 
-`og-card.png` is referenced by `og:image` / `twitter:image` on all five pages,
+`og-card.png` is referenced by `og:image` / `twitter:image` on `index.html`,
 with `og:image:type` set to `image/png`. **Keep it PNG, not WebP** — several
 link-unfurl pipelines reject WebP and fall back to a no-image card. Both
 `og:image:alt` and `twitter:image:alt` are set; keep them in sync if the card
@@ -45,8 +46,9 @@ Masters live in `brand/`, excluded from the deploy via `.cfignore` and
 fetchable needs the same treatment — see `CLAUDE.md` > Deploy for why both are
 needed.
 
-## Project photography — still outstanding
+## Photography
 
-`projects.html` and `index.html` still use striped `.tile-media` frames as
-stand-ins. Compress before committing (`cwebp`, `optipng` — the devcontainer
-ships them).
+None. The owner supplied no photos, and AI-generated building or jobsite images
+are ruled out (see `CLAUDE.md` > Overview), so the hero uses the mark. If real
+project photos arrive, compress before committing (`cwebp`, `optipng`).
+`cwebp` is not installed in the shared workspace container.
