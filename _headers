@@ -1,16 +1,18 @@
 # Cloudflare Pages headers
 # https://developers.cloudflare.com/pages/configuration/headers/
 
-# ---------------------------------------------------------------------------
-# PREVIEW ONLY. X-Robots-Tag below keeps the *.pages.dev preview, and its placeholder
-# phone and email, out of search results while the client reviews it.
-# DELETE THAT ONE LINE BEFORE THE REAL DOMAIN GOES LIVE or production ships
-# deindexed. robots.txt stays permissive on purpose: a Disallow would stop
-# crawlers from ever reading the noindex, which is the opposite of the goal.
-# ---------------------------------------------------------------------------
+# Keep the *.pages.dev hostnames (production and per-branch previews) out of
+# search results so they never compete with www.happyconstructionar.com. This is
+# Cloudflare's documented pattern; it matches by host, so the real domain stays
+# indexable. robots.txt stays permissive on purpose: a Disallow would stop
+# crawlers from ever reading the noindex.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
 
 /*
-  X-Robots-Tag: noindex, nofollow
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin

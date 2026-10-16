@@ -4,28 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Static landing page for Happy Construction, a commercial general contractor. No build step, no framework, no package manager. Plain HTML/CSS/JS served as files, deployed to Cloudflare Pages.
+Static landing page for Happy Construction, a general contractor doing retail and commercial interior work (build-outs, fixtures and displays, casework, electrical, signage) nationwide. No build step, no framework, no package manager. Plain HTML/CSS/JS served as files, deployed to Cloudflare Pages.
 
 **The site is one page on purpose.** The owner asked for a single professional landing page customers can find, and supplied no photos, projects, credentials, team, or history. The original five-page scaffold (Services, Projects, About, Contact) was collapsed into `index.html` on 2026-10-16. The old paths 301 to `/` (and `/contact` to `/#contact`) in `_redirects`.
 
 **The logo, icon set, share card, and palette are real**, generated from the brand masters in `brand/`. The tagline "Building with a smile." is the client's.
 
-**Copy rule: generic and true, never invented.** The page describes what a commercial GC does in general terms: the three service cards and the four delivery phases. It names no projects and states no counts, years, ratings, license numbers, safety figures, or affiliations, and makes no process promises (response times, a single point of contact, warranty or after-service support). Don't add any of these unless the client supplies them, and drop any line the client can't substantiate rather than softening it. A fabricated EMR or license number looks plausible and would ship as a lie. The same rule covers imagery. **No AI-generated photos of buildings or jobsites**: on a contractor's site, any building pictured reads as their work. The hero uses the mark instead.
+**Copy rule: generic and true, never invented.** The page describes the work in general terms: the three service cards and the four job phases. It names no projects and states no counts, years, ratings, license numbers, safety figures, or affiliations, and makes no process promises (response times, a single point of contact, warranty or after-service support, after-hours work, licensing in any given state). Don't add any of these unless the client supplies them, and drop any line the client can't substantiate rather than softening it. A fabricated EMR or license number looks plausible and would ship as a lie. The same rule covers imagery. **No AI-generated photos of buildings or jobsites**: on a contractor's site, any building pictured reads as their work. The hero uses the mark instead.
 
 The structures that make a GC site read as qualified (proof strip, safety block, sector-labelled project tiles, team section) were deliberately removed rather than left empty. Bring them back only when real content exists for them. The pre-collapse versions are in git history (`15628e2`).
 
-## Placeholders
+## Business facts
 
-Only the contact details are placeholders now. Replace them before launch.
+What the site states, and where each fact lives. Change every location together.
 
-| Placeholder | Where it appears (change all together) |
-| --- | --- |
-| `(555) 555-5555` / `+15555555555` | `js/components.js` (`PHONE_DISPLAY`, `PHONE_TEL`), `index.html` `#contact` section and JSON-LD `telephone` |
-| `info@happyconstructionar.com` (mailbox not confirmed to exist) | `js/components.js` (`EMAIL`), `index.html` `#contact` (two `mailto:` links) and JSON-LD `email` |
-| Service list | `index.html` "What We Take On" cards. The three are generic for a commercial GC but **not yet confirmed by the owner**. The same list is repeated in the meta and OG descriptions, the JSON-LD `description`, and the hero paragraph, and phase 02 assumes ground-up work. If a service is dropped, update all of them. |
-| `.wip-banner` | Top of `index.html` `<main>`. Delete it and the `.wip-banner` rule in `css/main.css` once the contact details are real. |
+| Fact | Status | Where |
+| --- | --- | --- |
+| Phone `(877) 624-2637` / `+18776242637` | From Logan, "I think" (2026-10-16). Unverified, so call it before launch. | `js/components.js` (`PHONE_DISPLAY`, `PHONE_TEL`), `index.html` `#contact` and JSON-LD `telephone` |
+| Email `info@happyconstructionar.com` | Forwarded to the owner's personal inbox via Cloudflare Email Routing (Logan setting up). | `js/components.js` (`EMAIL`), `index.html` `#contact` (two `mailto:` links) and JSON-LD `email` |
+| Services: build-outs and remodels, fixtures/displays/casework, electrical and signage | From Logan: in-store work, mostly retail. "Could be wrong", so the framing stays "general contractor". **No ground-up construction.** | `index.html` "What We Take On" cards, hero, phase 03, `<title>`/`og:title`, meta/OG descriptions, JSON-LD `description`, `site.webmanifest`, footer line in `js/components.js` |
+| Service area: across the U.S. | From Logan | H1, hero eyebrow and paragraph, meta/OG descriptions, footer line, JSON-LD `areaServed` |
 
-No service area or office address appears anywhere, because none was given. Add them only if the owner provides them (see "Structured data").
+No office address appears anywhere, and none is wanted (see "Structured data").
 
 The production domain is **https://www.happyconstructionar.com** (`happyconstruction.com` was not purchased). It is hardcoded in canonicals, OG `url`, `sitemap.xml`, `robots.txt`, and JSON-LD `@id`/`url`. If the domain ever changes, all five must change together.
 
@@ -37,7 +37,7 @@ The production domain is **https://www.happyconstructionar.com** (`happyconstruc
 
 ## Architecture
 
-`index.html` is the whole site: hero, "What We Take On" (`#services`), "How a Project Runs" (`#approach`), and "Contact" (`#contact`). There is no nav. The header carries the logo, the phone number (hidden below 640px), and a Contact button that jumps to `#contact`. `html { scroll-padding-top }` keeps the sticky header from covering anchor targets.
+`index.html` is the whole site: hero, "What We Take On" (`#services`), "How a Job Runs" (`#approach`), and "Contact" (`#contact`). There is no nav. The header carries the logo, the phone number (hidden below 640px), and a Contact button that jumps to `#contact`. `html { scroll-padding-top }` keeps the sticky header from covering anchor targets.
 
 If the site grows back to multiple pages, there is no template engine. Copy `index.html` and update:
 
@@ -91,9 +91,9 @@ The white-knockout footer logo was built against `--ink`. If the footer ground c
 
 The brand is a yellow smiley face in a hard hat with the tagline "Building with a smile." Every commercial GC surveyed in this market reads sober — navy (Nabholz, Liberty), red (Crossland), neutral grey (Commerce, Oelke). None are playful.
 
-**So let the logo be the only friendly thing on the page.** The gold does the warmth; everything around it — typography, project naming, numbers, safety language — stays as sober as the competition. That is why the hero and footer sit on near-black rather than on gold: the dark ground frames the mark instead of amplifying it. A site that is playful *everywhere* reads residential, and the buyer here is an owner or developer comparing bids.
+**So let the logo be the only friendly thing on the page.** The gold does the warmth; everything around it — typography, project naming, numbers, safety language — stays as sober as the competition. That is why the hero and footer sit on near-black rather than on gold: the dark ground frames the mark instead of amplifying it. A site that is playful *everywhere* reads residential, and the buyer here is a retailer or property team comparing contractors.
 
-That survey also found every competitor shows a proof strip, a safety block, named project tiles, and a team. Without real content those can't be filled honestly, so the one-page site leans on what is safe: the delivery-phase framing (which reads commercial) and a direct contact path. When the client can supply credentials or projects, adding them is the highest-value upgrade.
+That survey also found every competitor shows a proof strip, a safety block, named project tiles, and a team. Without real content those can't be filled honestly, so the one-page site leans on what is safe: the job-phase framing (which reads commercial) and a direct contact path. When the client can supply credentials or projects, adding them is the highest-value upgrade.
 
 ### Fonts
 
@@ -118,7 +118,7 @@ When a typeface is chosen, self-host it rather than linking Google Fonts — the
 
 `index.html` carries `Organization` JSON-LD with `@id: https://www.happyconstructionar.com/#organization`. Keep `name`, `url`, `telephone`, and `email` in step with `js/components.js`.
 
-It is `Organization` rather than `GeneralContractor` on purpose. `GeneralContractor` is a `LocalBusiness` subtype, and Google expects a full `address` for those. No office address has been given. If the owner provides a public address, switch the type to `GeneralContractor` and add `address` and `areaServed`.
+It is `Organization` rather than `GeneralContractor` on purpose. `GeneralContractor` is a `LocalBusiness` subtype, and Google expects a full `address` for those. The company works nationwide with no public office, so it stays `Organization` with `areaServed` set to the United States.
 
 `index.html` points `og:image` / `twitter:image` at `/images/og-card.png` (1200x630), with `og:image:type`, dimensions, and both `alt` variants set. **Keep it `.png`, not `.webp`** — LinkedIn's scraper and several link-unfurl pipelines (older Slack, some iMessage edge cases, WhatsApp) reject WebP and fall back to a no-image card. The card is the brand lockup on a gold field.
 
@@ -136,13 +136,13 @@ Cloudflare Pages, Git Integration, `main` branch. Build command: none. Build out
 
 - [x] Cloudflare Pages project created and connected to this repo (`happyconstruction-site.pages.dev` serves `main`)
 - [x] Domain registered, on Cloudflare nameservers
+- [x] Site collapsed to one landing page with generic, non-fabricated copy (2026-10-16)
+- [x] Real services, service area, and contact details in; preview banner removed (2026-10-16)
+- [x] `_headers` noindexes the `pages.dev` hosts only, so the real domain is indexable (takes effect on push)
+- [ ] Logan reviews locally
+- [ ] Phone number verified by calling it
+- [ ] Email Routing: `info@happyconstructionar.com` → owner's personal address, tested end to end
+- [ ] Push (deploys to the public, noindexed `pages.dev` host)
 - [ ] Custom domain `www.happyconstructionar.com` added in Pages (no DNS records resolve yet, checked 2026-10-16)
 - [ ] Apex → www Redirect Rule created at the zone level
-- [x] Real logo, icon set, and share card dropped in
-- [x] Palette re-derived from the brand gold
-- [x] Site collapsed to one landing page with generic, non-fabricated copy (2026-10-16)
-- [ ] Real phone and email, and the mailbox actually set up
-- [ ] Owner confirms the three service cards
-- [ ] `.wip-banner` removed
-- [ ] `X-Robots-Tag: noindex` line removed from `_headers` (launch-day, see the comment there)
-- [ ] Optional later: credentials, projects, team, service area, contact form, self-hosted typeface
+- [ ] Optional later: credentials, projects, team, contact form, self-hosted typeface

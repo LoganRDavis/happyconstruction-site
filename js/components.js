@@ -3,10 +3,9 @@
 // landing page, so there is no nav: the header carries the phone and a jump to
 // #contact. Hrefs are absolute so the 404 page could reuse this later.
 
-// PLACEHOLDER. See CLAUDE.md > "Placeholders". Also set in index.html (contact
-// section and JSON-LD); change all three together.
-const PHONE_DISPLAY = '(555) 555-5555';
-const PHONE_TEL = '+15555555555';
+// Also set in index.html (contact section and JSON-LD); change all three together.
+const PHONE_DISPLAY = '(877) 624-2637';
+const PHONE_TEL = '+18776242637';
 const EMAIL = 'info@happyconstructionar.com';
 
 // Horizontal lockup, no tagline. Two variants: the default black wordmark for
@@ -57,7 +56,7 @@ class SiteFooter extends HTMLElement {
 						<a href="/">
 							${logoPicture('light', 'loading="lazy" decoding="async"')}
 						</a>
-						<p>Commercial general contractor. Building with a smile.</p>
+						<p>General contractor for retail and commercial interiors, serving clients across the U.S. Building with a smile.</p>
 					</div>
 					<div class="footer-col">
 						<h2>Contact</h2>

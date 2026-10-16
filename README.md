@@ -1,5 +1,5 @@
 # Happy Construction
-A static website for Happy Construction, a commercial general contractor.
+A static website for Happy Construction, a general contractor for retail and commercial interiors.
 Deployed to Cloudflare Pages.
 https://www.happyconstructionar.com
 
@@ -10,6 +10,6 @@ https://www.happyconstructionar.com
 
 ## Status
 
-A single landing page with real branding and generic, non-fabricated copy. The
-phone number and email are still placeholders. See the "Placeholders" section of
-`CLAUDE.md`.
+A single landing page with real branding, services, and contact details, and
+copy that avoids unverifiable claims. See "Business facts" and "Setup still
+outstanding" in `CLAUDE.md` for what is confirmed and what is left before launch.

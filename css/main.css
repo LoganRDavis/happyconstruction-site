@@ -21,7 +21,6 @@
 :root {
   /* Brand */
   --ink: #17130F;          /* warm near-black: headings, hero/footer bg */
-  --ink-soft: #332B22;
   --slate: #574F45;        /* body copy on light, 8.05:1 on white */
   --slate-light: #6E6459;  /* muted labels, 5.78:1 on white */
   --accent: #FDCB17;       /* brand gold: FILL ONLY, never text on light */
@@ -385,7 +384,7 @@ header {
 
 .card-accent { border-top: 4px solid var(--accent); }
 
-/* Numbered delivery-phase card (How a Project Runs). */
+/* Numbered job-phase card (How a Job Runs). */
 .card-phase { border-top: 4px solid var(--accent); }
 
 /* The phases are an <ol> for their order; strip the list chrome. */
@@ -445,18 +444,6 @@ header {
 .section-dark .detail-list dd a { color: var(--white); }
 .section-dark .detail-list dd a:hover { color: var(--accent); }
 .section-dark .section-lede { color: var(--concrete-dark); }
-
-/* Placeholder banner: remove once the real phone and email land */
-
-.wip-banner {
-  margin: 0;
-  background: var(--ink-soft);
-  color: var(--white);
-  text-align: center;
-  padding: 10px 20px;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-}
 
 /* Footer */
 
