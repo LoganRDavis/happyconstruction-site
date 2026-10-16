@@ -12,4 +12,4 @@ https://www.happyconstructionar.com
 
 A single landing page with real branding, services, and contact details, and
 copy that avoids unverifiable claims. See "Business facts" and "Setup still
-outstanding" in `CLAUDE.md` for what is confirmed and what is left before launch.
+outstanding" in `CLAUDE.md` for what is confirmed and what is still open.

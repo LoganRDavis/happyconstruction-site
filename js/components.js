@@ -1,7 +1,7 @@
 // Shared chrome. The page includes <script src="/js/components.js" defer> and
 // drops <site-header> / <site-footer> into the body. The site is a single
 // landing page, so there is no nav: the header carries the phone and a jump to
-// #contact. Hrefs are absolute so the 404 page could reuse this later.
+// #contact.
 
 // Also set in index.html (contact section and JSON-LD); change all three together.
 const PHONE_DISPLAY = '(877) 624-2637';
@@ -9,7 +9,7 @@ const PHONE_TEL = '+18776242637';
 const EMAIL = 'info@happyconstructionar.com';
 
 // Horizontal lockup, no tagline. Two variants: the default black wordmark for
-// the white header, a knockout white wordmark for the charcoal footer. Rasters
+// the white header, a knockout white wordmark for the near-black footer. Rasters
 // are 256w (1x) and 512w (2x); intrinsic size is 256x78 for both. Regenerate
 // from brand/. See brand/README.md.
 const LOGO_W = 256;

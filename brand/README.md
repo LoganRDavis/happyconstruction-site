@@ -1,6 +1,6 @@
 # Brand masters
 
-The five hand-authored SVGs that every shipped raster in this repo derives from.
+The six hand-authored SVGs that every shipped raster in this repo derives from.
 Nothing on the site links to these directly — they're here so the repo can
 rebuild its own assets without hunting down an external folder.
 

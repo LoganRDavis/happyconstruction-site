@@ -25,7 +25,7 @@
   --slate-light: #6E6459;  /* muted labels, 5.78:1 on white */
   --accent: #FDCB17;       /* brand gold: FILL ONLY, never text on light */
   --accent-dark: #7A5E00;  /* gold that survives as text, 6.12:1 on white */
-  --accent-light: #FFF1C2; /* gold wash: highlight panels */
+  --accent-light: #FFF1C2; /* gold wash: currently unused */
 
   /* Surfaces */
   --white: #ffffff;

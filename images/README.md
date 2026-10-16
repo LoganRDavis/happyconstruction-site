@@ -10,7 +10,7 @@ master and re-run the script (see `brand/README.md`).
 | --- | --- |
 | `logo-horizontal-256.png` / `.webp` | Horizontal lockup, no tagline, black wordmark — 1x header/footer |
 | `logo-horizontal-512.png` / `.webp` | Same, 2x retina |
-| `logo-horizontal-light-256.png` / `.webp` | Wordmark knocked out to white for the charcoal footer — 1x |
+| `logo-horizontal-light-256.png` / `.webp` | Wordmark knocked out to white for the near-black footer — 1x |
 | `logo-horizontal-light-512.png` / `.webp` | Same, 2x retina |
 | `og-card.png` | 1200x630 share card — tagline lockup on a full-bleed gold field |
 | `mark.svg` | The full mark, editor cruft stripped — the landing-page hero image |

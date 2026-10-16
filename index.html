@@ -27,7 +27,7 @@
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="stylesheet" href="/css/main.css?v=20261016d">
+	<link rel="stylesheet" href="/css/main.css?v=20261016e">
 	<script src="/js/components.js" defer></script>
 
 	<!-- Organization, not GeneralContractor: the LocalBusiness subtypes expect a
@@ -133,6 +133,10 @@
 			</section>
 
 			<section class="section section-dark" id="contact" aria-labelledby="contact-heading">
+				<!-- email_off stops Cloudflare Email Obfuscation from rewriting the
+				     address into a JS-decoded placeholder, so crawlers and no-JS
+				     visitors see it. developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/ -->
+				<!--email_off-->
 				<div class="section-inner split">
 					<div>
 						<span class="eyebrow">Contact</span>
@@ -153,6 +157,7 @@
 						</div>
 					</dl>
 				</div>
+				<!--/email_off-->
 			</section>
 		</main>
 
